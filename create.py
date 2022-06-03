@@ -1,19 +1,19 @@
 # from SQLAlchemy import create_engine
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+from config import DATABASE, USER
 
 
 # создание базы данных timetable
 conn = psycopg2.connect(
-    database = 'postgres',
-    user='mieltn',
-    host=''
+    database = DATABASE,
+    user = USER
 )
 
 conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 
 cursor = conn.cursor()
-create_db = 'CREATE DATABASE timetable;'
+create_db = 'CREATE DATABASE timetable'
 
 cursor.execute(create_db)
 
@@ -23,8 +23,7 @@ conn.close()
 # создание таблицы 1 timetable_old
 conn = psycopg2.connect(
     database = 'timetable',
-    user='mieltn',
-    host=''
+    user = 'postgres'
 )
 
 conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
