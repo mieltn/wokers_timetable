@@ -165,9 +165,9 @@ def transform():
         END AS to_be_at_office
     FROM dates_cte
     -- left join на старую таблицу по номеру работника
-    -- дполнительное ограничение на версионность
     LEFT JOIN t_old_cte
         ON t_old_cte.tab_num = dates_cte.tab_num
+        -- дополнительное ограничение на актуальность записи
         AND dates_cte.date BETWEEN t_old_cte.start_date AND t_old_cte.finish_date
     ORDER BY dates_cte.tab_num
     ) AS timetable_new;
